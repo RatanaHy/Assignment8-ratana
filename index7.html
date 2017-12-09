@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment 7</title>
+	<style type="text/css">
+		
+		.hint{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	
+	<h1>Simple Sing-Up page</h1>
+	<span>Username:</span>
+	<input id = "username" type="text" name="name"> <span class="hint" id="feedbackusername"></span><br>
+	<span>Password:</span>
+	<input id ="Password" type="password" name="psw"> <span class="hint" id="feedbackpassword"></span><br>
+	<span>Confirm Password:</span>
+	<input id = "confirmPsw" type="password" name="psw"><span class="hint" id="feedbackConPsw"></span><br>
+	<span>Email:</span>
+	<input id = "email" type="email"><span class="hint" id="emialFeedback"></span>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+			var minLength = 8;
+			$("#username").on("keydown keyup change", function(){
+    		var valueUsername = $(this).val();
+    		if (valueUsername.length < minLength){
+    		$("#feedbackusername").text("Should greater than 8 characters");
+    		} else{
+    		$("#feedbackusername").text("");
+    		}	
+   			});	
+
+			$("#Password").on("keydown keyup change", function(){
+				var valuePassword = $(this).val();
+				if(valuePassword.length < minLength){
+					$("#feedbackpassword").text("Should greater than 8 characters");
+				}else{
+					$("#feedbackpassword").text("");
+				}
+			});
+
+			$("#confirmPsw").on("keydown keyup change", function(){
+				var password = $("#Password").val();
+				console.log(password);
+				if($(this).val() == password ){
+					$("#feedbackConPsw").text("Password is match !")
+				}else{
+					$("#feedbackConPsw").text("Pasword is not match !");
+				}
+			}); 
+
+            $("#email").on("keydown keyup change", function() {
+             var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+             if(reg.test($(this).val())){
+             	$("#emialFeedback").text("Correct email");
+             }else{
+             	$("#emialFeedback").text("Incorrect Email");
+             }
+              
+
+            });	 
+
+		});
+			
+        
+
+		
+
+	</script>
+
+</body>
+</html>
